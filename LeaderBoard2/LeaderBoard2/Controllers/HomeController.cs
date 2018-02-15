@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeaderBoard2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,26 @@ namespace LeaderBoard2.Controllers
 {
     public class HomeController : Controller
     {
+        private LeaderBoardEntities db = new LeaderBoardEntities();
+
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult LeaderBoard()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult PlayerSearch(DateTime date)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var players = db.Leaders.Where(p => p.Date_sc == date).ToList();
+            if (players.Count <= 0)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(players);
         }
+
     }
 }

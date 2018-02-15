@@ -1,0 +1,13 @@
+﻿@model IEnumerable<LeaderBoard2.Models.Leader>
+
+<div id="searchresults">
+
+    <h3>Все игроки по дате : @Model.First().Date_sc </h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Name</li>
+        }
+    </ul>
+
+</div>

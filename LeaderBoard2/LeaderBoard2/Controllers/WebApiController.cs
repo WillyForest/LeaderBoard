@@ -14,8 +14,10 @@ namespace LeaderBoard2.Controllers
         public int Id { get; set; }
         public string Name { get; set; }
         public int Score { get; set; }
+        public DateTime Date_sc { get; set; }
     }
 
+    
     public class WebApiController : ApiController
     {
         private LeaderBoardEntities db = new LeaderBoardEntities();
@@ -28,7 +30,7 @@ namespace LeaderBoard2.Controllers
 
             foreach (Leader l in players)
             {
-                p.Add(new Player { Id = l.PlayerId, Name = l.Name, Score = l.Score });
+                p.Add(new Player { Id = l.PlayerId, Name = l.Name, Score = l.Score, Date_sc = l.Date_sc });
             }
             return p;
         }
