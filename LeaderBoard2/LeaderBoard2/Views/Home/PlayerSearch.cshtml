@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<LeaderBoard2.Models.Leader>
 
 <div id="searchresults">
-
     <h3>Все игроки по дате : @Model.First().Date_sc </h3>
     <ul>
         @foreach (var item in Model)
@@ -9,5 +8,6 @@
             <li>@item.Name</li>
         }
     </ul>
-
 </div>
+@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")

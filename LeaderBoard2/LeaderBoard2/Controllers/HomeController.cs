@@ -20,6 +20,7 @@ namespace LeaderBoard2.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult PlayerSearch(DateTime date)
         {
             var players = db.Leaders.Where(p => p.Date_sc == date).ToList();
