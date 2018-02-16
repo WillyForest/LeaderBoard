@@ -31,5 +31,38 @@ namespace LeaderBoard2.Controllers
             return PartialView(players);
         }
 
+        
+        public ActionResult GetDayTop()
+        {
+            ViewBag.Message = "за сегодня:";
+            var players = db.Leaders.Where(p => p.Date_sc == DateTime.Today).ToList();
+            if (players.Count <= 0)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(players);
+        }
+        [HttpPost]
+        public ActionResult GetDayTop(string type)
+        {
+            if (type == "week")
+            {
+                ViewBag.Message = "за неделю:";
+                var players = db.Leaders.Where(p => p.Date_sc < DateTime.Today).ToList();
+                if (players.Count <= 0)
+                {
+                    return HttpNotFound();
+                }
+                return PartialView(players);
+            }
+            if (type == "all")
+            {
+                ViewBag.Message = "за всё время:";
+                var players = db.Leaders;
+                return PartialView(players);
+            }
+            return HttpNotFound();
+        }
+
     }
 }

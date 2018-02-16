@@ -291,6 +291,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\LeaderBoard.cshtml" />
     <Content Include="Views\Home\PlayerSearch.cshtml" />
+    <Content Include="Views\Home\GetDayTop.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
