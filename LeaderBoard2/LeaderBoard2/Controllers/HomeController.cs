@@ -45,9 +45,19 @@ namespace LeaderBoard2.Controllers
         [HttpPost]
         public ActionResult GetDayTop(string type)
         {
+            if (type == "day")
+            {
+                ViewBag.Message = "за сегодня:";
+                var players = db.Leaders.Where(p => p.Date_sc == DateTime.Today).ToList();
+                if (players.Count <= 0)
+                {
+                    return HttpNotFound();
+                }
+                return PartialView(players);
+            }
             if (type == "week")
             {
-                ViewBag.Message = "за неделю:";
+                ViewBag.Message = "за неделю:";///TODO: week filter
                 var players = db.Leaders.Where(p => p.Date_sc < DateTime.Today).ToList();
                 if (players.Count <= 0)
                 {

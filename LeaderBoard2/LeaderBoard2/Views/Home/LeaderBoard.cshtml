@@ -3,28 +3,78 @@
     Layout = null;
     ViewBag.Title = "Index";
 }
-
-
-@Html.Action("GetDayTop")
-<div>
-    @using (Ajax.BeginForm("GetDayTop", new AjaxOptions
-    {
-        UpdateTargetId = "results"
-    }))
-    {
-        <input type="hidden" value="all" name="type" />
-        <input type="submit" value="All time" />
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+<style>
+    body {
+        font-size: 50px;
+        text-align:center;
     }
-    @using (Ajax.BeginForm("GetDayTop", new AjaxOptions
-    {
-        UpdateTargetId = "results"
-    }))
-    {
-        <input type="hidden" value="week" name="type" />
-        <input type="submit" value="Week" />
+    li {
+        list-style-type: none;
+    }
+    input {
+        border: none;
+        background: none;
+    }
+    h2 {
+        font-size: 60px;
     }
     
-    <div id="results"></div>
+</style>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#">
+                @using (Ajax.BeginForm("GetDayTop", new AjaxOptions
+                {
+                    UpdateTargetId = "searchresults"
+                }))
+                {
+                    <input type="hidden" value="day" name="type" />
+                    <input type="submit" value="Day" />
+                }
+            </a>
+        </li>
+        <li><a href="#">
+                @using (Ajax.BeginForm("GetDayTop", new AjaxOptions
+                {
+                    UpdateTargetId = "searchresults"
+                }))
+                {
+                    <input type="hidden" value="all" name="type" />
+                    <input type="submit" value="Total" />
+                }
+            </a></li>
+        <li><a href="#">
+                @using (Ajax.BeginForm("GetDayTop", new AjaxOptions
+                {
+                    UpdateTargetId = "searchresults"
+                }))
+                {
+                    <input type="hidden" value="week" name="type" />
+                    <input type="submit" value="Week" />
+                }
+            </a></li>
+    </ul>
+    @Html.Action("GetDayTop")
+    
+    
+    
+    
 </div>
+<script>
+    $("li").click(function () {
+        $("li").removeClass("active");
+        $(this).addClass("active");
+    });
+</script>
 @Scripts.Render("~/scripts/jquery-1.10.2.min.js")
 @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+</body>
+</html>
